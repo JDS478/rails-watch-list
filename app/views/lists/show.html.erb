@@ -1,23 +1,19 @@
-<h1><%= @list.name %></h1>
-<div class="container d-flex m-b-10">
-  <%# <ol class="d-flex justify-content-center"> %>
-  <div class="row">
-    <% @list.bookmarks.each do |bookmark| %>
-    <div class="border text-center col-2 p-y-10">
-      <h4><%= bookmark.movie.title %></h4>
-      Rating: <%= bookmark.movie.rating %> <br>
-      <img src="https://image.tmdb.org/t/p/w500/<%= bookmark.movie.poster_url %>" alt="Poster" width="150">
-      <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-      <br>
-        <%= bookmark.comment %></li>
-      <br>
-    </div>
-    <% end %>
-  </div>
-</div>
-<%# <%= cl_image_tag("https://res.cloudinary.com/dzmytwzqz/image/upload/v1677238554/biwsz8xlxpeqnvz6vq2e.jpg",
-      width: 400, height: 300, crop: :fill) %>
+<div class="text-center">
+  <h1><%= @list.name %></h1>
 
-<%= link_to 'Create Bookmark', new_list_bookmark_path(params[:id]) %>
-<br>
-<%= link_to 'Go Back', lists_path %>
+  <% @list.bookmarks.each do |bookmark| %>
+    <div class="card-product">
+      <img src="https://image.tmdb.org/t/p/w500/<%= bookmark.movie.poster_url %>" alt="Poster">
+        <div class="card-product-infos">
+          <h2><%= bookmark.movie.title %></h2>
+          <p><%= bookmark.movie.overview %></p>
+          <p><%= bookmark.comment %></p>
+          <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to 'Create Bookmark', new_list_bookmark_path(params[:id]), class: "btn btn-primary" %>
+  <br>
+  <%= link_to 'Go Back', lists_path, class: "btn btn-primary m-10" %>
+</div>

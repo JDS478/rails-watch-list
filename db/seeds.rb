@@ -17,25 +17,12 @@ puts "Generating new Movies..."
 # puts parsed_file["results"]
 
 parsed_file["results"].first(10).each do |film|
-  puts film
-  puts "film"
+  # puts film
+  # puts "film"
   Movie.create!(title: film["original_title"], rating: Faker::Number.within(range: 1..5), overview: film["overview"], poster_url: film["poster_path"])
   # puts film["original_title"]
 end
 
-# puts "Done!"
-
-if Movie.all.length.nil?
-  puts "Error"
-else
-  puts "Success created #{Movie.all.length}!"
-end
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
-# 10.times do
-#   movie = Movie.create(title: Faker::Movie.title, rating: Faker::Number.within(range: 1..5), overview: Faker::Movie.quote)
-#   movie.save
-# end
+puts "Success created #{Movie.all.length}!"
 
 # 'http://tmdb.lewagon.com/movie/top_rated?'
