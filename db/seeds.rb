@@ -16,7 +16,7 @@ Movie.destroy_all
 puts "Generating new Movies..."
 # puts parsed_file["results"]
 
-parsed_file["results"].first(10).each do |film|
+parsed_file["results"].first(20).each do |film|
   # puts film
   # puts "film"
   Movie.create!(title: film["original_title"], rating: Faker::Number.within(range: 1..5), overview: film["overview"], poster_url: film["poster_path"])
